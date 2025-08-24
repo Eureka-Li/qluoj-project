@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main()
+{
+    int n, m;
+    while (1)
+    {
+        scanf("%d %d", &n, &m);
+        if (n == 0 && m == 0)
+            break;
+
+        int arr[110];
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d", &arr[i]);
+        }
+
+        int pos = n;
+        for (int i = 0; i < n; i++)
+        {
+            if (arr[i] >= m)
+            {
+                pos = i;
+                break;
+            }
+        }
+
+        for (int i = n; i > pos; i--)
+        {
+            arr[i] = arr[i - 1];
+        }
+        arr[pos] = m;
+
+        for (int i = 0; i <= n; i++)
+        {
+            if (i > 0)
+                printf(" ");
+            printf("%d", arr[i]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
