@@ -1,23 +1,52 @@
+//题目描述
+
+//年轻的程序学徒 Alice 面对一道要求将序列完全排序的考题感到十分头大。为了“看起来”像是排序过，他决定偷偷使用一种名为“序列洗牌术”的伪排序方法：
+//他将序列中最小的数与第一个元素交换位置，再将最大的数与最后一个元素交换位置，其余元素保持不变。这样一来，序列虽然没有真正排好序，但起码头尾“看起来”有点样子了。
+//现在轮到你来实现这段伪排序程序了。
+//题目保证：最大值和最小值不会出现在原序列的首尾位置。
+//输入格式
+
+//输入包括两行。 第一行为正整数 
+//(1≤n≤10)。 第二行为n个正整数组成的序列。
+//输出格式
+//输出转换好的序列。数据之间用空格隔开。
+
 #include <stdio.h>
 int main()
 {
     int a[20];
-    int n,max=-2,min=99999;
-    scanf("%d",&n);
-    for(int i=0;i<n;i++)
+    int n, max = 0, min = 0;
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
     {
-        scanf("%d",a[i]);
+        scanf("%d",& a[i]);
     }
-    for(int i=0;i<n;i++)
+    for (int i = 0; i < n; i++)
     {
-        if(a[i]>max)
+        if (a[i] > a[max])
         {
-            max=i;
+            max = i;
         }
-        if(a[i]<min)
+        if (a[i] < a[min])
         {
-            min=i;
+            min = i;
         }
+    }
+    int temp = a[0];
+    a[0] = a[min];
+    a[min] = temp;
+    if (max == 0)
+    {
+        max = min;
+    }
+    temp = a[n - 1];
+    a[n - 1] = a[max];
+    a[max] = temp;
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d", a[i]);
+        if (i < n - 1)
+            printf(" ");
     }
     return 0;
 }
