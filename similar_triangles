@@ -1,0 +1,52 @@
+//https://oj.qlu.edu.cn/p/P1432
+#include <stdio.h>
+
+// 函数：判断三边是否能组成三角形
+int isTriangle(int a, int b, int c) {
+    return (a + b > c) && (a + c > b) && (b + c > a);
+}
+
+// 函数：排序三边（冒泡排序简单实现）
+void sort3(int arr[3]) {
+    int i, j, temp;
+    for (i = 0; i < 2; i++) {
+        for (j = i + 1; j < 3; j++) {
+            if (arr[i] > arr[j]) {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int T;
+    scanf("%d", &T);
+    while (T--) {
+        int a1, b1, c1, a2, b2, c2;
+        scanf("%d %d %d %d %d %d", &a1, &b1, &c1, &a2, &b2, &c2);
+
+        // 判断三角形是否合法
+        if (!isTriangle(a1, b1, c1) || !isTriangle(a2, b2, c2)) {
+            printf("NO\n");
+            continue;
+        }
+
+        // 排序边长
+        int tri1[3] = {a1, b1, c1};
+        int tri2[3] = {a2, b2, c2};
+        sort3(tri1);
+        sort3(tri2);
+
+        // 判断是否成比例
+        // cross multiplication to avoid floating point
+        if (tri1[0] * tri2[1] == tri1[1] * tri2[0] &&
+            tri1[0] * tri2[2] == tri1[2] * tri2[0]) {
+            printf("YES\n");
+        } else {
+            printf("NO\n");
+        }
+    }
+    return 0;
+}
