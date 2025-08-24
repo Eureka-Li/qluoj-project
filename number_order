@@ -1,0 +1,37 @@
+// 题目描述
+// 你是一名工厂流水线的整理员，需要将一批物料编号进行排序。给定
+// N 个整数，请你将它们按从小到大的顺序排列，方便后续的装配流程。
+// 输入格式
+// 输入数据第一行是一个正整数N，第二行包含N个整数。
+// 输出格式
+// 输出一行，从小到大输出这 N个整数，中间用空格隔开。
+#include <stdio.h>
+int main()
+{
+    int a[110];
+    int N;
+    scanf("%d", &N);
+    for (int i = 0; i < N; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+    for (int i = 0; i < N - 1; i++) // 冒泡
+    {
+        for (int j = 0; j < N - 1 - i; j++)
+        {
+            if (a[j] > a[j + 1])
+            {
+                int temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
+            }
+        }
+    }
+    for (int i = 0; i < N; i++)
+    {
+        printf("%d", a[i]);
+        if (i < N - 1)
+            printf(" ");
+    }
+    return 0;
+}
