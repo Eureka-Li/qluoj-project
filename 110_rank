@@ -1,0 +1,32 @@
+// https://oj.qlu.edu.cn/p/P1371
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int T;
+    cin >> T;
+    while (T--)
+    {
+        int n;
+        cin >> n;
+        int scores[10];
+        for (int i = 0; i < 10; i++)
+            cin >> scores[i];
+
+        int aliceScore = scores[0];
+        int rank = 1;
+        for (int i = 1; i < 10; i++)
+        {
+            if (scores[i] < aliceScore)
+                rank++;
+        }
+
+        cout << rank << endl;
+    }
+
+    return 0;
+}

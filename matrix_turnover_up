@@ -1,0 +1,33 @@
+// https://oj.qlu.edu.cn/p/P1321
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int R, C;
+    cin >> R >> C;
+    vector<vector<int>> mat(R, vector<int>(C));
+
+    // 输入矩阵
+    for (int i = 0; i < R; i++)
+        for (int j = 0; j < C; j++)
+            cin >> mat[i][j];
+
+    // 输出旋转后的矩阵
+    for (int j = 0; j < C; j++)
+    { // 新矩阵行
+        for (int i = R - 1; i >= 0; i--)
+        { // 新矩阵列
+            cout << mat[i][j];
+            if (i != 0)
+                cout << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}

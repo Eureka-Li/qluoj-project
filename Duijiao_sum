@@ -1,0 +1,24 @@
+// https://oj.qlu.edu.cn/p/P1320
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int mat[3][3];
+
+    // 输入矩阵
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
+            cin >> mat[i][j];
+
+    int sum = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        sum += mat[i][2 - i]; // 左下到右上的对角线
+    }
+
+    cout << sum << endl;
+    return 0;
+}

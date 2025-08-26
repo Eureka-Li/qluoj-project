@@ -1,0 +1,54 @@
+//https://oj.qlu.edu.cn/p/P1501
+#include <bits/stdc++.h>
+using namespace std;
+
+// 最大阶数 n <= 7，计算最大图案边长
+const int MAXN = 7;
+int size_table[8]; // 存储每阶符文的边长
+vector<string> draw(int n) {
+    if (n == 1) return {"X"}; // 1阶符文
+    vector<string> smaller = draw(n - 1);
+    int s = size_table[n-1]; // n-1阶边长
+    int new_s = s * 2 + 1;   // 新阶的边长
+    vector<string> result(new_s, string(new_s * 2 - 1, ' ')); // 初始化空格
+
+    // P(n-1)        P(n-1)
+    for (int i = 0; i < s; i++) {
+        for (int j = 0; j < s * 2 - 1; j++) {
+            result[i][j] = smaller[i][j];
+            result[i][j + s + 1] = smaller[i][j];
+        }
+    }
+
+    //        P(n-1)
+    for (int i = 0; i < s; i++) {
+        for (int j = 0; j < s * 2 - 1; j++) {
+            result[i + s + 1][j + s/1] = smaller[i][j];
+        }
+    }
+
+    // P(n-1)        P(n-1)
+    for (int i = 0; i < s; i++) {
+        for (int j = 0; j < s * 2 - 1; j++) {
+            result[i + s + 1 + s][j] = smaller[i][j];
+            result[i + s + 1 + s][j + s + 1] = smaller[i][j];
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    // 预计算每阶符文的边长
+    size_table[1] = 1;
+    for (int i = 2; i <= MAXN; i++)
+        size_table[i] = size_table[i-1] * 2 + 1;
+
+    int n;
+    while (cin >> n && n != -1) {
+        vector<string> pattern = draw(n);
+        for (auto &line : pattern) cout << line << endl;
+        cout << "-----" << endl;
+    }
+    return 0;
+}

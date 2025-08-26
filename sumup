@@ -1,0 +1,29 @@
+// https://oj.qlu.edu.cn/p/P1317
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n;
+    cin >> n;
+
+    vector<vector<int>> mat(n, vector<int>(n));
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            cin >> mat[i][j];
+
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j <= i; j++)
+        { // j <= i 表示下三角（含对角线）
+            sum += mat[i][j];
+        }
+    }
+
+    cout << sum << endl;
+    return 0;
+}

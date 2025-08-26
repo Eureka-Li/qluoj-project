@@ -1,0 +1,19 @@
+// https://oj.qlu.edu.cn/p/P1359
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int arr[10];
+    for (int i = 0; i < 10; i++)
+        cin >> arr[i];
+
+    cout << arr[9]; // 输出第一个元素（逆序第一个，不加空格）
+    for (int i = 8; i >= 0; i--) // 余下元素前加空格
+        cout << " " << arr[i];
+
+    cout << endl;
+    return 0;
+}

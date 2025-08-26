@@ -1,0 +1,25 @@
+// https://oj.qlu.edu.cn/p/P1399
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int N;
+    cin >> N;
+    vector<int> totalscores(N);
+    for (int i = 0; i < N; i++)
+    {
+        int chinese, math, english;
+        cin >> chinese >> math >> english;
+        totalscores[i] = chinese + math + english;
+    }
+    sort(totalscores.begin(), totalscores.end(), greater<int>());
+    for (int i = 0; i < N; i++)
+    {
+        cout << totalscores[i] << endl;
+    }
+    return 0;
+}

@@ -1,0 +1,42 @@
+// https://oj.qlu.edu.cn/p/P1319
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    while (true)
+    {
+        int N;
+        cin >> N;
+        if (N == 0)
+            break; // 输入 0 表示结束
+
+        vector<vector<int>> mat(N, vector<int>(N));
+        for (int i = 0; i < N; i++)
+            for (int j = 0; j < N; j++)
+                cin >> mat[i][j];
+
+        bool symmetric = true;
+        for (int i = 0; i < N && symmetric; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                if (mat[i][j] != mat[j][i])
+                {
+                    symmetric = false;
+                    break;
+                }
+            }
+        }
+
+        if (symmetric)
+            cout << "yes" << endl;
+        else
+            cout << "no" << endl;
+    }
+
+    return 0;
+}

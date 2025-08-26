@@ -1,0 +1,49 @@
+//https://oj.qlu.edu.cn/p/P1383
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int m, n;
+    cin >> m >> n;
+    vector<vector<int>> Array(m, vector<int>(n));
+
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++)
+            cin >> Array[i][j];
+
+    bool found = false;
+
+    for (int i = 0; i < m; i++) {
+        // 找到当前行的最大值以及所在列索引
+        int rowMax = Array[i][0];
+        int colIdx = 0;
+        for (int j = 1; j < n; j++) {
+            if (Array[i][j] > rowMax) {
+                rowMax = Array[i][j];
+                colIdx = j;
+            }
+        }
+
+        // 检查该列是否为最小值
+        bool isSaddle = true;
+        for (int k = 0; k < m; k++) {
+            if (Array[k][colIdx] < rowMax) {
+                isSaddle = false;
+                break;
+            }
+        }
+
+        if (isSaddle) {
+            cout << "Array[" << i << "][" << colIdx << "]=" << rowMax << endl;
+            found = true;
+            break; // 题目保证不会有两个鞍点
+        }
+    }
+
+    if (!found) cout << "None" << endl;
+
+    return 0;
+}

@@ -1,0 +1,24 @@
+//https://oj.qlu.edu.cn/p/P1483
+#include <iostream>
+using namespace std;
+
+// n 个盘子从 from 移到 to，借助 aux
+void hanoi(int n, char from, char aux, char to) {
+    if (n == 1) {
+        cout << "Move disk 1 from " << from << " to " << to << endl;
+        return;
+    }
+    // 先把 n-1 个盘子移到辅助柱
+    hanoi(n - 1, from, to, aux);
+    // 移动最大的盘子
+    cout << "Move disk " << n << " from " << from << " to " << to << endl;
+    // 把 n-1 个盘子从辅助柱移到目标柱
+    hanoi(n - 1, aux, from, to);
+}
+
+int main() {
+    int n;
+    cin >> n;
+    hanoi(n, 'A', 'B', 'C'); // 从 A 移到 C，借助 B
+    return 0;
+}

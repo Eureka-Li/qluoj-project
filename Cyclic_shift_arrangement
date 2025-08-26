@@ -1,0 +1,29 @@
+// https://oj.qlu.edu.cn/p/P1341
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+
+    int m;
+    cin >> m;
+
+    for (int i = 0; i < n; i++)
+    {
+        int idx = (n - m + i) % n; // 循环索引
+        cout << arr[idx];
+        if (i != n - 1)
+            cout << " ";
+    }
+    cout << endl;
+    return 0;
+}
